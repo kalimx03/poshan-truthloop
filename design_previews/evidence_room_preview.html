@@ -1,0 +1,189 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Poshan TruthLoop — Evidence Room Preview</title><style>
+
+:root {
+  --pt-navy: #08275f;
+  --pt-navy-2: #123b83;
+  --pt-orange: #ef7b25;
+  --pt-orange-pale: #fff2e8;
+  --pt-blue-pale: #edf3ff;
+  --pt-ink: #17243a;
+  --pt-muted: #64748b;
+  --pt-line: #dfe6f0;
+  --pt-canvas: #f6f8fc;
+  --pt-white: #ffffff;
+  --pt-green: #16734a;
+  --pt-green-pale: #e9f7ef;
+  --pt-red: #b42318;
+  --pt-red-pale: #fff0ee;
+  --pt-amber: #8a4b08;
+  --pt-amber-pale: #fff6df;
+}
+html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+  background: var(--pt-canvas) !important;
+  color: var(--pt-ink) !important;
+  color-scheme: light !important;
+}
+[data-testid="stSidebar"], [data-testid="stSidebarNav"] { display: none !important; }
+[data-testid="stAppViewContainer"] > .main { margin-left: 0 !important; }
+[data-testid="stMainBlockContainer"], section.main > div.block-container {
+  max-width: 1510px !important;
+  padding: 0 2.15rem 3.25rem !important;
+}
+header[data-testid="stHeader"] { background: transparent !important; }
+[data-testid="stToolbar"], #MainMenu, footer, [data-testid="stStatusWidget"] { visibility: hidden !important; height: 0 !important; }
+body, p, li, label, span, div { font-family: Arial, Helvetica, sans-serif; }
+h1, h2, h3 { color: var(--pt-navy) !important; letter-spacing: -0.025em; }
+h1 { font-size: 2.45rem !important; line-height: 1.08 !important; font-weight: 760 !important; }
+h2 { font-size: 1.65rem !important; font-weight: 740 !important; }
+h3 { font-size: 1.15rem !important; font-weight: 720 !important; }
+p, li, [data-testid="stMarkdownContainer"] { color: var(--pt-ink); }
+[data-testid="stMetric"] {
+  background: var(--pt-white) !important;
+  border: 1px solid var(--pt-line) !important;
+  border-top: 3px solid var(--pt-orange) !important;
+  border-radius: 11px !important;
+  padding: 1rem 1.1rem .9rem !important;
+  box-shadow: 0 2px 8px rgba(8,39,95,.035) !important;
+  min-height: 112px;
+}
+[data-testid="stMetricLabel"] { color: var(--pt-muted) !important; font-size: .86rem !important; font-weight: 600 !important; }
+[data-testid="stMetricValue"] { color: var(--pt-navy) !important; font-size: 1.65rem !important; font-weight: 760 !important; }
+[data-testid="stMetricDelta"] { font-size: .78rem !important; }
+[data-testid="stDataFrame"], [data-testid="stTable"] {
+  border: 1px solid var(--pt-line) !important; border-radius: 10px !important; overflow: hidden !important;
+  background: var(--pt-white) !important;
+}
+[data-testid="stExpander"] {
+  background: var(--pt-white) !important; border: 1px solid var(--pt-line) !important;
+  border-radius: 10px !important; overflow: hidden !important;
+}
+[data-testid="stExpander"] summary { color: var(--pt-navy) !important; font-weight: 650 !important; }
+[data-testid="stAlert"] { border-radius: 10px !important; }
+.stButton > button, [data-testid="stFormSubmitButton"] button {
+  border-radius: 7px !important; border: 1px solid #c8d4e5 !important;
+  color: var(--pt-navy) !important; background: #fff !important; font-weight: 650 !important;
+  min-height: 2.45rem !important;
+}
+.stButton > button[kind="primary"], [data-testid="stFormSubmitButton"] button[kind="primary"] {
+  background: var(--pt-navy) !important; color: white !important; border-color: var(--pt-navy) !important;
+}
+.stButton > button:hover { border-color: var(--pt-orange) !important; color: var(--pt-navy) !important; }
+[data-baseweb="select"] > div, [data-baseweb="input"] > div, [data-baseweb="textarea"] > div {
+  border-color: #cdd8e8 !important; border-radius: 7px !important; background: white !important;
+}
+[data-testid="stPageLink-NavLink"] {
+  border-radius: 7px !important; padding: .45rem .55rem !important; text-decoration: none !important;
+  color: var(--pt-navy) !important; font-weight: 650 !important; font-size: .91rem !important;
+}
+[data-testid="stPageLink-NavLink"]:hover { background: var(--pt-blue-pale) !important; }
+[data-testid="stPageLink-NavLink"][aria-current="page"] { background: #fff2e8 !important; border-bottom: 3px solid var(--pt-orange) !important; border-radius: 7px 7px 2px 2px !important; }
+hr { border-color: var(--pt-line) !important; }
+.pt-govstrip {
+  margin: 0 -2.15rem .0rem; padding: .52rem 2.15rem;
+  background: var(--pt-navy); color: #fff; font-size: .76rem; letter-spacing: .04em;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.pt-govstrip strong { color: #fff; font-weight: 700; }
+.pt-govstrip .pt-tagline { color: #dce7fb; }
+.pt-nav {
+  margin: 0 -2.15rem 1.15rem; padding: .85rem 2.15rem .75rem;
+  background: white; border-bottom: 1px solid var(--pt-line);
+}
+.pt-brand { display: flex; align-items: center; gap: .7rem; min-height: 2.6rem; }
+.pt-logo {
+  width: 42px; height: 42px; border-radius: 9px; display: flex; align-items: center;
+  justify-content: center; background: var(--pt-orange); color: white; font-size: 1.1rem; font-weight: 800;
+  border: 2px solid #ffd2ae; box-shadow: inset 0 0 0 2px var(--pt-orange);
+}
+.pt-brand-main { display: block; color: var(--pt-orange); font-size: 1.15rem; line-height: 1.0; font-weight: 800; letter-spacing: .015em; }
+.pt-brand-sub { display: block; color: var(--pt-navy); font-size: .98rem; line-height: 1.08; font-weight: 780; letter-spacing: .03em; }
+.pt-navnote { display: inline-block; border-radius: 100px; padding: .28rem .55rem; background: var(--pt-orange-pale); border: 1px solid #ffd6b7; color: #85410b; font-size: .68rem; font-weight: 750; letter-spacing: .04em; }
+.pt-hero {
+  display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(240px, .85fr); gap: 1.2rem;
+  padding: 1.65rem 1.75rem; border-radius: 14px; background: var(--pt-navy); color: white;
+  border-bottom: 5px solid var(--pt-orange); box-shadow: 0 8px 22px rgba(8,39,95,.12); margin: .4rem 0 1.3rem;
+}
+.pt-hero .pt-eyebrow { color: #ffbf86; text-transform: uppercase; font-size: .75rem; font-weight: 750; letter-spacing: .13em; margin: 0 0 .75rem; }
+.pt-hero h1 { color: white !important; margin: 0 0 .75rem !important; font-size: 2.35rem !important; }
+.pt-hero h1 span { color: #ff9a4d; }
+.pt-hero p { color: #e5ecf8; margin: 0; line-height: 1.55; max-width: 800px; }
+.pt-hero-panel { align-self: stretch; border-radius: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); padding: 1.1rem 1.25rem; display: flex; flex-direction: column; justify-content: center; }
+.pt-hero-panel .pt-panel-label { color: #d6e2f7; font-size: .73rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+.pt-hero-panel .pt-big-number { color: white; font-size: 2.2rem; line-height: 1.18; font-weight: 800; margin: .2rem 0 .25rem; }
+.pt-hero-panel .pt-panel-note { color: #e4edfc; font-size: .86rem; line-height: 1.4; }
+.pt-hero-panel .pt-panel-warning { margin-top: .8rem; padding: .55rem .65rem; border-radius: 6px; color: #fff3e8; background: rgba(239,123,37,.17); border-left: 3px solid #ff9a4d; font-size: .79rem; }
+.pt-section-eyebrow { color: var(--pt-orange); font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; margin: .15rem 0 .32rem; }
+.pt-section-intro { color: var(--pt-muted); margin-top: -.35rem; margin-bottom: 1rem; }
+.pt-notice { background: #fff; border: 1px solid var(--pt-line); border-left: 4px solid var(--pt-navy-2); border-radius: 9px; padding: .9rem 1rem; margin: .65rem 0 1.1rem; color: var(--pt-ink); }
+.pt-notice strong { color: var(--pt-navy); }
+.pt-notice--synthetic { border-left-color: var(--pt-orange); background: #fffaf6; }
+.pt-notice--warning { border-left-color: #c2410c; background: #fff7ed; }
+.pt-notice--success { border-left-color: var(--pt-green); background: #f0fdf4; }
+.pt-chip { display: inline-block; border-radius: 5px; padding: .25rem .5rem; font-size: .72rem; font-weight: 800; letter-spacing: .035em; }
+.pt-chip--red { color: #9f1d18; background: #fff0ee; border: 1px solid #f7bbb5; }
+.pt-chip--green { color: #136b42; background: #e9f7ef; border: 1px solid #b9e6ca; }
+.pt-chip--amber { color: #81400a; background: #fff4dc; border: 1px solid #f3d39b; }
+.pt-outcome {
+  padding: 1.1rem 1.2rem; background: white; border: 1px solid #f2b3a8;
+  border-left: 5px solid #cf322a; border-radius: 10px; margin: .7rem 0 1rem;
+}
+.pt-outcome--warning { border-color: #f1d39b; border-left-color: var(--pt-orange); background: #fffaf1; }
+.pt-outcome--success { border-color: #b9e6ca; border-left-color: var(--pt-green); background: #f2fbf5; }
+.pt-outcome .pt-outcome-title { font-size: .78rem; letter-spacing: .09em; font-weight: 850; margin-bottom: .4rem; color: #a32720; }
+.pt-outcome--warning .pt-outcome-title { color: #8a4b08; }
+.pt-outcome--success .pt-outcome-title { color: #16734a; }
+.pt-outcome .pt-outcome-body { color: #34445b; font-size: .94rem; line-height: 1.5; }
+.pt-footer { border-top: 1px solid var(--pt-line); color: var(--pt-muted); margin-top: 2.2rem; padding-top: .8rem; font-size: .76rem; }
+@media (max-width: 900px) {
+  .pt-hero { grid-template-columns: 1fr; }
+  .pt-govstrip { display: block; }
+  .pt-govstrip .pt-tagline { display: block; margin-top: .2rem; }
+}
+
+body { margin:0; background:#f6f8fc; }
+.preview-root { max-width:1510px; margin:0 auto; padding:0 34px 42px; }
+.pt-govstrip { margin:0 -34px; padding-left:34px; padding-right:34px; }
+.pt-nav { margin:0 -34px 18px; padding-left:34px; padding-right:34px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.navlinks {display:flex; align-items:center; gap:12px; color:#08275f; font-size:14px; font-weight:650; white-space:nowrap;}
+.navitem {padding:10px 9px; border-radius:7px;}
+.navitem.active {background:#fff2e8; border-bottom:3px solid #ef7b25;}
+.prototype-pill {display:inline-block; border-radius:100px; padding:7px 11px; font-size:11px; letter-spacing:.05em; font-weight:800; color:#85410b; background:#fff2e8; border:1px solid #ffd6b7;}
+.standalone h1 {font-size:40px!important;}
+.eyebrow-orange {color:#ef7b25; font-size:12px; font-weight:800; letter-spacing:.11em; text-transform:uppercase;}
+.content-grid {display:grid; grid-template-columns:1.1fr 1fr; gap:22px; margin-top:24px;}
+.panel {background:#fff;border:1px solid #dfe6f0;border-radius:12px;padding:20px 22px;box-shadow:0 2px 8px rgba(8,39,95,.03);}
+.panel h2 {font-size:23px!important;margin:.2rem 0 .5rem!important;}
+.panel p {color:#64748b;line-height:1.5;font-size:14px;}
+.metric-grid {display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:16px 0 20px;}
+.metric {background:#fff;border:1px solid #dfe6f0;border-top:4px solid #ef7b25;border-radius:11px;padding:19px 18px 17px;min-height:90px;box-shadow:0 2px 8px rgba(8,39,95,.035);}
+.metric .label {font-size:13px;color:#64748b;font-weight:650;margin-bottom:12px;}
+.metric .value {font-size:28px;font-weight:800;color:#08275f; letter-spacing:-.02em;}
+.metric .note {font-size:12px;color:#64748b;margin-top:7px;line-height:1.35;}
+.notice {background:#fff;border:1px solid #dfe6f0;border-left:4px solid #123b83;border-radius:9px;padding:13px 16px;color:#17243a;font-size:14px;line-height:1.5;margin:14px 0 18px;}
+.notice.warn {background:#fff7ed;border-left-color:#c2410c;}
+.notice strong {color:#08275f;}
+.mini-chart {height:170px; position:relative; margin-top:16px; border-left:1px solid #dfe6f0; border-bottom:1px solid #dfe6f0; background:repeating-linear-gradient(to bottom, #fff 0, #fff 41px, #e9eef6 42px, #fff 43px);}
+.axis-label {position:absolute;left:-6px;transform:translateX(-100%);color:#64748b;font-size:11px;}
+.dot {position:absolute;width:16px;height:16px;border-radius:50%;background:#ef7b25;border:3px solid #08275f;box-shadow:0 0 0 5px rgba(239,123,37,.13);}
+.dot1 {left:22%;bottom:70.82%;transform:translate(-50%,50%);}
+.dot2 {left:78%;bottom:97.87%;transform:translate(-50%,50%);}
+.chart-label {position:absolute;bottom:-25px;color:#475569;font-size:12px;transform:translateX(-50%);white-space:nowrap;}
+.chart-note {font-size:12px!important;color:#64748b!important;margin-top:32px!important;}
+.recon-table {width:100%;border-collapse:collapse;font-size:13px;margin-top:12px;}
+.recon-table th {text-align:left;color:#64748b;font-weight:700;background:#f7f9fc;padding:10px;border-bottom:1px solid #dfe6f0;}
+.recon-table td {padding:12px 10px;border-bottom:1px solid #e8edf5;color:#17243a;}
+.recon-table td:last-child {color:#a32a21;font-weight:750;}
+.smallcaps {font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#ef7b25;font-weight:800;}
+.source-line {margin:22px 0 0;padding-top:14px;border-top:1px solid #dfe6f0;color:#64748b;font-size:12px;display:flex;justify-content:space-between;}
+@media(max-width:1100px) {.navlinks{display:none} .metric-grid{grid-template-columns:repeat(2,1fr)} .content-grid{grid-template-columns:1fr}}
+</style></head><body><div class="preview-root standalone">
+<div class="pt-govstrip"><span><strong>MISSION POSHAN 2.0</strong> &nbsp;·&nbsp; Nutrition service assurance concept</span><span class="pt-tagline">INDEPENDENT STUDENT PROTOTYPE · NOT AN OFFICIAL GOVERNMENT SERVICE</span></div>
+<div class="pt-nav"><div class="pt-brand"><div class="pt-logo">PT</div><div><span class="pt-brand-main">POSHAN</span><span class="pt-brand-sub">TRUTHLOOP</span></div></div><div class="navlinks"><span class="navitem active">Evidence Room</span><span class="navitem">Case Workbench</span><span class="navitem">Case Detail</span><span class="navitem">Supervisor Oversight</span></div><span class="prototype-pill">INDEPENDENT PROTOTYPE</span></div>
+<section class="pt-hero"><div><p class="pt-eyebrow">MATERNAL & EARLY CHILDHOOD NUTRITION</p><h1>From reported status to <span>receipt assurance.</span></h1><p>Poshan TruthLoop is a proposed assurance layer for following THR exceptions through recovery and documented outcomes—while keeping the limits of the public record visible.</p></div><div class="pt-hero-panel"><div class="pt-panel-label">NATIONAL MATCHING STATUS · JUNE 2026</div><div class="pt-big-number">97.87%</div><div class="pt-panel-note">e-KYC and face matching completed in the national row.</div><div class="pt-panel-warning">Matching status is not proof of THR receipt.</div></div></section>
+<div class="notice"><strong>PUBLIC EVIDENCE VIEW</strong> &nbsp; This page uses reported national figures from Lok Sabha Unstarred Question 1121, answered 24 July 2026. No synthetic case data appears here.</div>
+<div class="eyebrow-orange">01 · NATIONAL SNAPSHOT</div><h2 style="margin:.2rem 0 .2rem!important;">What the national row establishes</h2><p style="margin:.2rem 0;color:#64748b;font-size:14px">Counts and calculations from the published national row; the unmatched figure is derived by subtraction, not a count of people denied THR.</p>
+<div class="metric-grid"><div class="metric"><div class="label">Active eligible THR beneficiaries</div><div class="value">43,732,621</div><div class="note">National row · June 2026</div></div><div class="metric"><div class="label">e-KYC + face matched</div><div class="value">42,800,299</div><div class="note">Reported count</div></div><div class="metric"><div class="label">Not matched · derived</div><div class="value">932,322</div><div class="note">Not a non-receipt count</div></div><div class="metric"><div class="label">Matching rate · calculated</div><div class="value">97.87%</div><div class="note">Recomputed from national counts</div></div></div>
+<div class="notice warn"><strong>What the parliamentary answer does—and does not—say.</strong> The question asked for people who had not received THR since verification was mandated, along with reasons. The answer gives authentication counts and rates, but does not enumerate the requested non-receipt counts or reasons. This is a gap in the published answer; it does not prove that anyone was denied food or that no internal records exist.</div>
+<div class="content-grid"><div class="panel"><div class="smallcaps">02 · Reported observations</div><h2>Two points, not a fabricated trend</h2><p>Matching rate (%) as reported. The two points are intentionally not connected.</p><div class="mini-chart"><span class="axis-label" style="bottom:0%">0%</span><span class="axis-label" style="bottom:50%">50%</span><span class="axis-label" style="bottom:100%">100%</span><span class="dot dot1"></span><span class="dot dot2"></span><span class="chart-label" style="left:22%">Jul 2025 · 70.82%</span><span class="chart-label" style="left:78%">Jun 2026 · 97.87%</span></div><p class="chart-note">The cited answer does not provide July 2025 absolute counts or its denominator. Intermediate monthly values are not fabricated.</p></div><div class="panel"><div class="smallcaps">03 · Data integrity</div><h2>State-level reconciliation gate</h2><div class="notice warn" style="margin:.4rem 0 .7rem"><strong>GATE CLOSED · COUNTS DO NOT RECONCILE</strong><br>State/UT rows remain as reported. Rankings, shares of the national gap and concentration claims are suppressed until the counts reconcile.</div><table class="recon-table"><thead><tr><th>Measure</th><th>State-row sum</th><th>National row</th><th>Difference</th></tr></thead><tbody><tr><td>Active eligible</td><td>47,748,546</td><td>43,732,621</td><td>+4,015,925</td></tr><tr><td>Matched</td><td>46,638,884</td><td>42,800,299</td><td>+3,838,585</td></tr><tr><td>Unmatched · derived</td><td>1,109,662</td><td>932,322</td><td>+177,340</td></tr></tbody></table><p>The source does not establish the cause of the mismatch; official clarification is needed before state comparisons are used.</p></div></div>
+<div class="source-line"><span>POSHAN TRUTHLOOP · Independent student prototype · Public evidence only</span><span>Source: Lok Sabha Unstarred Question 1121 · 24 July 2026</span></div>
+</div></body></html>
